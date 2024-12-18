@@ -1,30 +1,45 @@
 function addJogador() {
-    const ul = document.getElementById('jogadores');
-    const jogadorLi = document.createElement('li');
-    const posicaoLi = document.createElement('li');
-    const numeroLi = document.createElement('li');
-    jogadorLi.innerText = "Jogador: ";
-    posicaoLi.innerText = "Posição: ";
-    numeroLi.innerText = "Numero: ";
+    const position = document.getElementById('position').value;
+    const name = document.getElementById('name').value;
+    const number = document.getElementById('number').value;
 
-    const jogadorInput = document.createElement('input');
-    jogadorInput.type = 'text';
-    jogadorInput.name = 'jogador';
-    jogadorLi.appendChild(jogadorInput);
+    if (!position || !name || !number) {
+        alert("Todos os campos devem ser preenchidos!");
+        return;
+    }
 
-    ul.appendChild(jogadorLi);
+    const confirmation = confirm("Escalar " + name + " como " + position + "?");
 
-    const posicaoInput = document.createElement('input');
-    posicaoInput.type = 'text';
-    posicaoInput.name = 'posição';
-    posicaoLi.appendChild(posicaoInput);
+    if (confirmation) {
+        const jogadores = document.getElementById('jogadores');
+        const playerItem = document.createElement('li');
+        playerItem.id = 'jogador-' + number;
+        playerItem.innerText = position + ": " + name + " (" + number + ")";
+        jogadores.appendChild(playerItem);
+        
+        document.getElementById('position').value = '';
+        document.getElementById('name').value = '';
+        document.getElementById('number').value = '';
+    }
+}
 
-    ul.appendChild(posicaoLi);
+function removeJogador() {
+    const number = document.getElementById('numberToRemove').value;
+    if (!number) {
+        alert("Por favor, forneça o número do jogador a ser removido.");
+        return;
+    }
 
-    const numeroInput = document.createElement('input');
-    numeroInput.type = 'text';
-    numeroInput.name = 'numero';
-    numeroLi.appendChild(numeroInput);
+    const playerToRemove = document.getElementById('jogador-' + number);
 
-    ul.appendChild(numeroLi);
+    if (!playerToRemove) {
+        alert("Jogador não encontrado.");
+        return;
+    }
+
+    const confirmation = confirm("Remover o jogador " + playerToRemove.innerText + "?");
+    if (confirmation) {
+        document.getElementById('jogadores').removeChild(playerToRemove);
+        document.getElementById('numberToRemove').value = '';
+    }
 }

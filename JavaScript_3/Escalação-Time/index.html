@@ -8,9 +8,27 @@
 </head>
 <body>
     <h1>Escalando o time Bareli FC</h1>
+    <br>
+    <h2>Escalar jogador</h2>
+    <br>
+    <p>
+        <label for="position">Posição: </label>
+        <input type="text" name="position" id="position">
+        <label for="name">Nome: </label>
+        <input type="text" name="name" id="name">
+        <label for="number">Numero: </label>
+        <input type="text" name="number" id="number">
+        <button onclick="addJogador()">Escalar</button>
+    </p>
 
-    <button onclick="addJogador()">Escalar</button>
-    <button onclick="removeJogador()">Remover</button>
+    <h2>Remover jogador</h2>
+    <p>
+        <label for="numberToRemove">Remover: </label>
+        <input type="text" name="numberToRemove" id="numberToRemove">
+        <button onclick="removeJogador()">Remover</button>
+    </p>
+    
+    <h2>Time</h2>
     <ul id="jogadores"></ul>
 </body>
 </html>
